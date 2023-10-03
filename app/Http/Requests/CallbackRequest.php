@@ -3,6 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Justfeel\Response\ResponseCodes;
 
 class CallbackRequest extends FormRequest
 {
@@ -24,5 +27,15 @@ class CallbackRequest extends FormRequest
             'callback_fail_url' => 'required|url',
             'hash' => 'required|string',
         ];
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            response()->json([
+                'success' => false,
+                'errors' => $validator->errors(),
+            ], ResponseCodes::HTTP_BAD_REQUEST)
+        );
     }
 }

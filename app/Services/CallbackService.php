@@ -36,7 +36,7 @@ class CallbackService
         } catch (\Exception $e) {
 
             Log::error('Callback request failed. Error: ' . $e->getMessage());
-            throw new \Exception($e->getMessage(), $e->getCode());
+            throw new \Exception('Callback request failed', 500);
         }
     }
 }
