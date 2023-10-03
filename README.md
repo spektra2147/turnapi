@@ -31,7 +31,7 @@ Bu proje Case Study çalışmasıdır.
 
 ### How to use Callback API
 
-Endpoint URL = `http://127.0.0.1:8000/api/callback`
+Endpoint URL [POST]= `http://127.0.0.1:8000/api/callback`
 
 Example Request Parameters:
 
