@@ -13,7 +13,7 @@ class ActivityService
             ->whereDate('created_at', Carbon::today())
             ->count();
 
-        return $dailyEntries < 3;
+        return $dailyEntries < 2;
     }
 
     public function canEnterCafeteria()
