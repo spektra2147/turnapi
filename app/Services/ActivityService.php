@@ -31,4 +31,9 @@ class ActivityService
             'order_id' => $orderId,
         ]);
     }
+
+    public function findActivity($orderId)
+    {
+        return Activity::query()->where('order_id', $orderId)->first();
+    }
 }

@@ -47,6 +47,11 @@ class CallbackController extends Controller
                     return ResponseResult::generate(false, 'Günlük yemekhane geçiş limitine ulaşıldı', ResponseCodes::HTTP_BAD_REQUEST);
                 }
 
+                if ($this->activityService->findActivity($request->order_id)) {
+                    $this->callbackService->sendCallbackRequest($request, false);
+                    return ResponseResult::generate(false, 'Bu sipariş id işlendi!', ResponseCodes::HTTP_BAD_REQUEST);
+                }
+
                 $this->activityService->saveActivity($request->user_id, $request->order_id);
 
                 $this->callbackService->sendCallbackRequest($request);
